@@ -1,4 +1,4 @@
 webim-for-flask
 ===============
 
-webim for python flask
+WebIM for Python Flask

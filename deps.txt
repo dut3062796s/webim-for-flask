@@ -1,0 +1,4 @@
+MySQL-python
+Flask-SQLAlchemy==1.0
+Flask-Login==0.2.7
+
