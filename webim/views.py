@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, jsonify, current_app, make_response
 
-
 webim_view = Blueprint('webim_view', __name__)
 
 @webim_view.route("/boot")
@@ -15,6 +14,7 @@ def boot():
 
 @webim_view.route("/online", methods=['POST'])
 def online():
+	#TODO: 5.2 update
 	return jsonify({'success':False})
 
 @webim_view.route("/offline", methods=['POST'])
@@ -55,6 +55,7 @@ def download_history():
 
 @webim_view.route("/members")
 def members():
+	#TODO: 5.2 change
 	return jsonify("ok")
 
 @webim_view.route("/group/join")
