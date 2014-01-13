@@ -78,12 +78,12 @@ def online():
 @webimbp.route("/offline", methods=['POST'])
 def offline():
    g.client.offline()
-   return jsonify("ok")
+   return "ok"
 
 @webimbp.route("/refresh", methods=['POST'])
 def deactivate():
    g.client.offline
-   return jsonify("ok")
+   return "ok"
 
 @webimbp.route("/message", methods=['POST'])
 def message():
@@ -120,7 +120,7 @@ def status():
 def setting():
    data = request.values.get('data')
    #TODO:
-   return jsonify("ok")
+   return "ok"
    
 @webimbp.route("/history")
 def history():
@@ -132,7 +132,7 @@ def history():
 def clear_history():
    #TODO
    WebimHistory.clear(request.values.get("id"))
-   return jsonify("ok")
+   return "ok"
 
 @webimbp.route("/history/download", methods=['POST'])
 def download_history():
@@ -168,7 +168,7 @@ def join_group():
 def leave_group():
    gid = _g('id')
    g.client.leave(gid)
-   return jsonify("ok")
+   return "ok"
 
 @webimbp.route("/buddies")
 def buddies():
@@ -189,4 +189,8 @@ def _g(k):
 
 def _g(k, v):
    return reqeust.values.get(k, v)
+
+
+
+
 

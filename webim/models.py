@@ -5,7 +5,7 @@
 # Webim User
 # ==============================================================================    
 def new_user(id, nick, presence="offline", show="unavailable", status="",
-    status_time="", url="", pic_url = ""):
+    status_time="", url="#", pic_url = "/static/webim/images/chat.png"):
     return {
        'id': id,
        'nick': nick,
@@ -20,7 +20,7 @@ def new_user(id, nick, presence="offline", show="unavailable", status="",
 # ==============================================================================
 # Webim Group
 # ==============================================================================    
-def new_group(id, nick, url = '#', pic_url = '#'):
+def new_group(id, nick, url = '#', pic_url = '/static/webim/images/chat.png'):
     return {
         'id': id,
         'nick': nick,
