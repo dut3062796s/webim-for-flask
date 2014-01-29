@@ -62,6 +62,17 @@ def new_status(to, show, status):
         'status': status
     }
 
+class WebimBuddy:
+    pass
+
+class WebimGroup:
+    pass
+
+class WebimSetting(db.Model):
+    pass
+
+class WebimHistory(db.Model):
+    pass
 
 class WebimModel:
 
@@ -73,7 +84,6 @@ class WebimModel:
 
     def group(self, gid):
         return new_group(gid, gid)
-
 
     def buddies_by_ids(self, ids):
         return [new_user(id, id) for id in ids]

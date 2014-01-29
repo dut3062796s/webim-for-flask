@@ -5,6 +5,7 @@ var _IMC = {
 	version: 'v5.2',
 	path: '{{ urlpath }}',
 	is_login: '1',
+    is_visitor: false,
 	login_options: "",
 	user: '',
 	setting: {},
