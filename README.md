@@ -15,8 +15,21 @@ Run
 
     python webapp.py
 
+Coding
+======
+
+1. coding flask_webim/plugin.py
+
+2. coding flask_webim/model.py
+
     
 TODO
 ====
 
-Tmp Group
+Room...
+
+Author
+======
+
+NexTalk.IM
+
