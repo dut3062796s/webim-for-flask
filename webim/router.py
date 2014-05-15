@@ -2,7 +2,9 @@ from flask import Blueprint, g, request, render_template, jsonify, current_app, 
 
 import time, webim
 
-from models import new_user, new_status, new_message, WebimModel
+from .model import Model
+from .plugin import Plugin
+
 
 #def gravatar_default(oid):
 #    return GRAVATAR_DEFAULT_URL % hashlib.sha1(str(oid)).hexdigest()

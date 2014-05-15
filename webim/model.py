@@ -1,93 +1,64 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-# ==============================================================================
-# Webim User
-# ==============================================================================    
-def new_user(id, nick, presence="offline", show="unavailable", status="",
-    status_time="", url="#", pic_url = "/static/webim/images/chat.png"):
-    return {
-       'id': id,
-       'nick': nick,
-       'presence': presence,
-       'show': show,
-       'status': status,
-       'status_time': status_time,
-       'url': url,
-       'pic_url': pic_url
-    }
+class Model:
 
-# ==============================================================================
-# Webim Group
-# ==============================================================================    
-def new_group(id, nick, url = '#', pic_url = '/static/webim/images/chat.png'):
-    return {
-        'id': id,
-        'nick': nick,
-        'count': 0,
-        'url': url,
-        'pic_url': pic_url
-    }
+    def __init__(self):
+        pass
 
-# ==============================================================================
-# Webim Message
-# ==============================================================================    
-def new_message(to, nick, body, timestamp, type = "chat", style = ""):
-    return {
-        'to': to,
-        'nick': nick,
-        'body': body,
-        'timestamp': timestamp,
-        'type': type,
-        'style': style
-    }
+    def histories(self, uid, to, typ = 'chat', limit = 50):
+        return []
 
-# ==============================================================================
-# Presence
-# ==============================================================================    
-def new_presence(type = "online", show = "available", status = ""):
-    return {
-        'type': type,
-        'show':  show,
-        'status': status
-    }
+    def offline_histories(self, uid, limit = 50):
+        return []
 
-# ==============================================================================
-# Status
-# ==============================================================================    
-def new_status(to, show, status):
-    return {
-        'to': to,
-        'show': show,
-        'status': status
-    }
+    def insert_history(self, message):
+        pass
 
-class WebimBuddy:
-    pass
+    def clear_histories(self, uid, to):
+        pass
 
-class WebimGroup:
-    pass
+    def offline_readed(self, uid):
+        pass
 
-class WebimSetting(db.Model):
-    pass
+    def setting(self, uid, data = None):
+         return {} if(data == None)
 
-class WebimHistory(db.Model):
-    pass
+    def rooms(self, uid):
+        return []
 
-class WebimModel:
+    def rooms_by_ids(self, uid, ids):
+        return []
 
-    def buddies(self, uid):
-        return [new_user('uid1', 'uid1'), new_user('uid2', 'uid2')]
+    def members(self, room):
+        return []
 
-    def groups(self, uid):
-        return [new_group('gid1', 'group1')]
+    def create_room(self, data):
+        pass
 
-    def group(self, gid):
-        return new_group(gid, gid)
+    def invite_room(self, room, members):
+        [self.join_room(room, m['id'], m['nick']) for m in members]
 
-    def buddies_by_ids(self, ids):
-        return [new_user(id, id) for id in ids]
+    def join_room(self, room, uid, nick):
+        pass
 
-    def notifications(self, uid):
-        return [{'text': 'notification', 'link': '#'}, {'text' : 'notification2', 'link': '#'}]
+    def leave_room(self, room, uid):
+        pass
+
+    def block_room(self, room, uid):
+        pass
+
+    def is_room_blocked(self, room, uid):
+        return False
+
+    def unblock_room(self, room, uid):
+        pass
+
+    def visitor(self):
+        return None
+
+    def visitors(self, vids):
+        return []
+
+   
 

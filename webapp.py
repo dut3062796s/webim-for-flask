@@ -1,11 +1,11 @@
 
 from flask import Flask, session, request, render_template, jsonify, make_response
 
-from webim.views import webimbp
+from webim.router import webim_router
 
 app = Flask(__name__)
 app.config.from_pyfile("setting.cfg")
-app.register_blueprint(webimbp, url_prefix='/webim')
+app.register_blueprint(webim_router, url_prefix='/webim')
 
 @app.route("/")
 def index():
