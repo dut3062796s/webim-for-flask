@@ -22,7 +22,7 @@ class Model:
         pass
 
     def setting(self, uid, data = None):
-         return {} if(data == None)
+        if(data == None): return {} 
 
     def rooms(self, uid):
         return []
