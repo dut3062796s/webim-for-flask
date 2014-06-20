@@ -33,7 +33,7 @@ class Plugin:
             'nick': 'uid1',
             'presence': 'online',
             'show': "available",
-            'pic_url': webim_image('male.png'),
+            'avatar': webim_image('male.png'),
             'url': "#",
             'role': 'user',
             'status':  ""
@@ -48,7 +48,7 @@ class Plugin:
         id:         uid
         uid:        uid
         nick:       nick
-        pic_url:    url of photo
+        avatar:    url of photo
         presence:   online | offline
         show:       available | unavailable | away | busy | hidden
         url:        url of home page of buddy 
@@ -63,7 +63,7 @@ class Plugin:
             'presence': 'offline',
             'show': 'unavailable',
             'status': '#',
-            'pic_url': webim_image('male.png')
+            'avatar': webim_image('male.png')
         } for id in range(1, 11) ]
 
     def buddies_by_ids(self, uid, ids):
@@ -77,7 +77,7 @@ class Plugin:
             'presence': 'offline',
             'show': 'unavailable',
             'status': '#',
-            'pic_url': webim_image('male.png')
+            'avatar': webim_image('male.png')
         } for id in ids ]
 
     def rooms(self, uid):
@@ -86,7 +86,7 @@ class Plugin:
         id:		    Room ID,
         nick:	    Room Nick
         url:	    Home page of room
-        pic_url:    Pic of Room
+        avatar:    Pic of Room
         status:     Room status 
         count:      count of online members
         all_count:  count of all members
@@ -97,7 +97,7 @@ class Plugin:
             'name': 'room1',
             'nick': 'Room',
             'url': "#",
-            'pic_url': webim_image('room.png'),
+            'avatar': webim_image('room.png'),
             'status': "Room",
             'blocked': False,
             'temporary': False
@@ -112,7 +112,7 @@ class Plugin:
             'name': id,
             'nick': "Room",
             'url': "#",
-            'pic_url': webim_image('room.png')
+            'avatar': webim_image('room.png')
         } for id in ids if id == 'room1']
 
     def members(self, room):

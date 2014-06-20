@@ -18,9 +18,9 @@ Run
 Coding
 ======
 
-1. coding flask_webim/plugin.py
+1. flask_webim/plugin.py
 
-2. coding flask_webim/model.py
+2. flask_webim/model.py
 
     
 TODO

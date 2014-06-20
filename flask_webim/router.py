@@ -134,7 +134,7 @@ def history():
 
 @webimbp.route("/history/clear", methods=['POST'])
 def clear_history():
-    g.model.clear_histories(g.user['id'], request.values.get("id"))
+    g.model.clear_histories(g.user['id'], request.values.post("id"))
     return "ok"
 
 @webimbp.route("/history/download", methods=['POST'])
