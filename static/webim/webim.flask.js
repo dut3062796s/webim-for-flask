@@ -56,7 +56,9 @@
 		soundUrls: soundUrls,
 		//layout: "layout.popup",
         layoutOptions: {
-            unscalable: _IMC.is_visitor
+            unscalable: _IMC.is_visitor,
+            //detachable: true, //true
+	    maximizable: true
         },
 		buddyChatOptions: {
             downloadHistory: !_IMC.is_visitor,
@@ -89,7 +91,16 @@
         if( _IMC.enable_room )ui.addApp("room", { discussion: (_IMC.discussion && !_IMC.is_visitor) });
         if(_IMC.enable_noti )ui.addApp("notification");
     }
-    if(_IMC.enable_chatlink) ui.addApp("chatbtn");
+    if(_IMC.enable_chatbtn) {
+        ui.addApp("chatbtn", {
+            elmentId: null,
+            chatbox: true,
+            classRe: /webim-chatbtn/,
+            hrefRe: [/chatbox&uid=(\d+)$/i]
+        });
+        //ui.addApp("chatbtn");
+    }
+    //if(_IMC.enable_chatlink) ui.addApp("chatbtn");
     ui.addApp("setting", {"data": webim.setting.defaults.data, "copyright": true});
     //render
 	ui.render();
