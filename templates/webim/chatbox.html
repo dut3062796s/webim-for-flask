@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+    <title>Webim ChatBox</title>
+    <link rel="stylesheet" type="text/css" href="/static/webim/webim-chatbox.css"/>
+    <script type="text/javascript" src="/static/webim/webim-chatbox.js"></script>
+</head>
+<body>
+<body id="chatbox">
+    <div id="header">
+        <img id="avatar" class="avatar" src="{{buddy.avatar}}"></img>
+        <h4 id="user">{{buddy.nick}}</h4>
+    </div>
+    <div id="notice" class="chatbox-notice ui-state-highlight" style="display: none;">
+    </div>
+    <div id="content"><div id="histories"></div></div>
+    <div id="footer">
+        <table style="width:100%">
+            <tbody><tr><td width="100%">
+            <input type="hidden" id="to" value="{{buddy.id}}">
+            <input type="text" data-inline="true" placeholder="请这里输入消息..." name="" id="inputbox">
+            </td><tr><tbody>
+        </table>
+    </div>
+    <script>
+        (function(webim, options) { 
+          var path = options.path || "";
+          function url(api) { return path + api; }
+          webim.route({
+            online: url("/webim/online"),
+            offline: url("/webim/offline"),
+            deactivate: url("/webim/refresh"),
+            message: url("/webim/message"),
+            presence: url("/webim/presence"),
+            status: url("/webim/status"),
+            setting: url("/webim/setting"),
+            history: url("/webim/history"),
+            buddies: url("/webim/buddies")
+          });
+          var im = new webim(null, options);
+          var chatbox = new webim.chatbox(im, options);
+          im.online();
+      })(webim, {touid: '{{buddy.id}}', path:''}); //TODO: PATH...
+    </script>
+</body>
+</html>
