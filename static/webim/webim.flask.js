@@ -96,7 +96,7 @@
             elmentId: null,
             chatbox: true,
             classRe: /webim-chatbtn/,
-            hrefRe: [/chatbox&uid=(\d+)$/i]
+            hrefRe: [/chatbox\/(\d+)$/i]
         });
         //ui.addApp("chatbtn");
     }

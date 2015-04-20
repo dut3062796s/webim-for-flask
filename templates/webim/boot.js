@@ -2,14 +2,15 @@
 //TODO: FIXME Later
 //
 var _IMC = {
-	version: 'v5.4.2',
+	version: 'v5',
 	path: '',
 	is_login: '1',
-    is_visitor: false,
+    is_visitor: {{ WEBIM_CFG.is_visitor|tojson }},
 	login_options: "",
 	user: '',
-	setting: {{ setting|tojson }},
+	setting: {{ WEBIM_CFG.setting|tojson }},
 	menu: "",
+	enable_chatbtn: true,
 	enable_chatlink: {{ WEBIM_CFG.enable_chatlink|tojson }},
 	enable_shortcut: {{ WEBIM_CFG.enable_shortcut|tojson }},
 	enable_menu: '',

@@ -14,7 +14,7 @@ def gravatar_url(email):
     return url
 
 def webim_image(img):
-    return "static/webim/images/%s" % (img)
+    return "/static/webim/images/%s" % (img)
 
 class Plugin:
 
@@ -24,18 +24,32 @@ class Plugin:
         """
         pass
 
-    def user(self):
+    ##TODO: 应该从用户表读取.
+    def user(self, uid):
         """
         Current user
         """
         return {
-            'id': 'uid1',
-            'nick': 'uid1',
+            'id': str(uid),
+            'nick': "user"+str(uid),
             'presence': 'online',
             'show': "available",
             'avatar': webim_image('male.png'),
             'url': "#",
             'role': 'user',
+            'status':  ""
+        }
+
+    #TODO: 从request生成visitor
+    def visitor(self, request):
+        return {
+            'id': 'vid:1',
+            'nick': "v1",
+            'presence': 'online',
+            'show': "available",
+            'avatar': webim_image('female.png'),
+            'url': "#",
+            'role': 'visitor',
             'status':  ""
         }
 
@@ -57,7 +71,7 @@ class Plugin:
 
         """
         return [ {
-            'id':   'uid'+str(id),
+            'id':   str(id),
             'group': 'friend',
             'nick':  'user'+str(id),
             'presence': 'offline',
@@ -71,7 +85,7 @@ class Plugin:
         Buddies by ids
         """
         return [{
-            'id':  'uid'+id,
+            'id':  id,
             'group': 'friend',
             'nick': 'user'+id,
             'presence': 'offline',

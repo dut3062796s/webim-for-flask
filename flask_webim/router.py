@@ -1,5 +1,11 @@
+#!/usr/bin/env python
+#coding: utf-8
 
-from flask import Blueprint, g, request, render_template, jsonify, current_app, make_response
+"""
+webim router.
+"""
+
+from flask import Blueprint, g, session, request, render_template, jsonify, current_app, make_response
 
 import time, webim
 
@@ -11,13 +17,12 @@ webimbp = Blueprint('webim_view', __name__)
 @webimbp.before_request
 def init_webim():
    CFG = current_app.config['WEBIM']
-   uid = request.values.get('uid', None)
    g.model = Model()
    g.plugin = Plugin()
-   g.user = g.plugin.user()
-   if(uid != None):
-       g.user['id'] = uid
-       g.user['nick'] = uid
+   if 'uid' in session:
+       g.user = g.plugin.user(session['uid'])
+   else:
+       g.user = g.plugin.visitor(request)
    ticket = request.values.get('ticket', None)
    g.client = webim.Client(g.user, CFG['domain'], CFG['apikey'], 
          ticket=ticket, host=CFG['host'], port=CFG['port'])
@@ -26,9 +31,11 @@ def init_webim():
 def boot():
     setting = g.model.setting(g.user['id'])
     #WebIM config
-    WEBIM_CFG = current_app.config['WEBIM']
-    #TODO:
-    response = make_response(render_template('/webim/boot.js', setting=setting, WEBIM_CFG=WEBIM_CFG))
+    config = current_app.config['WEBIM']
+    config['is_visitor'] = g.user['role'] == 'visitor'
+    config['setting'] = setting
+    config['jsonp'] = False
+    response = make_response(render_template('/webim/boot.js', WEBIM_CFG=config))
     response.headers['Content-Type'] = 'text/javascript'
     return response
 
@@ -54,6 +61,7 @@ def online():
     data = {
         'success': True,
         'connection': data['connection'],
+        'presences': data['presences'],
         'buddies': buddies,
         'rooms': rooms,
         'server_time': time.time()*1000,
@@ -146,6 +154,11 @@ def download_history():
     response.headers['Content-Type'] = 'text/html;charset=utf-8'
     response.headers['Content-Disposition'] = "attachment; filename=\"histories-%d.html\"" % time.time()
     return response
+
+@webimbp.route("/chatbox/<uid>")
+def chatbox(uid):
+    buddy = g.plugin.user(uid)
+    return render_template("webim/chatbox.html", buddy = buddy)
 
 @webimbp.route("/rooms")
 def rooms():
