@@ -29,7 +29,7 @@
           var path = options.path || "";
           function url(api) { return path + api; }
           webim.route({
-            online: url("/webim/online"),
+            online: url("/webim/online?touid=" + options.touid),
             offline: url("/webim/offline"),
             deactivate: url("/webim/refresh"),
             message: url("/webim/message"),

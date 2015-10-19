@@ -49,6 +49,10 @@ def online():
     buddy_ids = [buddy['id'] for buddy in buddies]
     room_ids = [room['id'] for room in rooms]
 
+    touid = request.values.get('touid')
+    if touid:
+        buddy_ids.append(touid)
+
     data = g.client.online(buddy_ids, room_ids)
 
     presences = data['presences']
@@ -83,6 +87,11 @@ def deactivate():
 def buddies():
     ids = request.values.get('ids').split(',')
     buddies = g.plugin.buddies_by_ids(ids)
+    presences = g.client.presences(ids)
+    for buddy in buddies:
+        if buddy['id'] in presences:
+            buddy['presence'] = 'online'
+            buddy['show'] = presences[buddy['id']]
     return jsonify(buddies)
 
 @webimbp.route("/message", methods=['POST'])
